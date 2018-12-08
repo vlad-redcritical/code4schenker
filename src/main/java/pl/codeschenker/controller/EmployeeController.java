@@ -1,4 +1,4 @@
-package pl.braintri.rest.api.controller;
+package pl.codeschenker.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.braintri.rest.api.model.FilterType;
-import pl.braintri.rest.api.model.EmployeeEntityDto;
-import pl.braintri.rest.api.model.FilterSearchCriteriaDto;
-import pl.braintri.rest.api.service.EmployeeService;
+import pl.codeschenker.model.FilterType;
+import pl.codeschenker.model.EmployeeEntityDto;
+import pl.codeschenker.model.FilterSearchCriteriaDto;
+import pl.codeschenker.service.EmployeeService;
 
 import javax.validation.Valid;
 import java.util.List;

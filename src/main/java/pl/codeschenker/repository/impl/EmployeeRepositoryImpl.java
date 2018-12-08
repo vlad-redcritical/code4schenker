@@ -1,9 +1,8 @@
-package pl.braintri.rest.api.repository.impl;
+package pl.codeschenker.repository.impl;
 
-import com.google.common.primitives.Longs;
-import pl.braintri.rest.api.model.EmployeeEntity;
-import pl.braintri.rest.api.model.FilterSearchCriteriaDto;
-import pl.braintri.rest.api.repository.EmployeeRepositoryCustom;
+import pl.codeschenker.model.EmployeeEntity;
+import pl.codeschenker.model.FilterSearchCriteriaDto;
+import pl.codeschenker.repository.EmployeeRepositoryCustom;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

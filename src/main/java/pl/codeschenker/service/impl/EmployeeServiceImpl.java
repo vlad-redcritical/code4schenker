@@ -1,15 +1,14 @@
-package pl.braintri.rest.api.service.impl;
+package pl.codeschenker.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.braintri.rest.api.model.EmployeeEntity;
-import pl.braintri.rest.api.model.EmployeeEntityDto;
-import pl.braintri.rest.api.model.FilterSearchCriteriaDto;
-import pl.braintri.rest.api.repository.EmployeeRepository;
-import pl.braintri.rest.api.service.EmployeeService;
+import pl.codeschenker.model.EmployeeEntity;
+import pl.codeschenker.model.EmployeeEntityDto;
+import pl.codeschenker.model.FilterSearchCriteriaDto;
+import pl.codeschenker.repository.EmployeeRepository;
+import pl.codeschenker.service.EmployeeService;
 
 import javax.transaction.Transactional;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +16,8 @@ import java.util.stream.Collectors;
 @Transactional
 public class EmployeeServiceImpl implements EmployeeService {
 
-	@Autowired EmployeeRepository employeeRepository;
+	@Autowired
+	EmployeeRepository employeeRepository;
 
 	@Override
 	public List<EmployeeEntityDto> findByCriteria(FilterSearchCriteriaDto searchCriteriaDto) {

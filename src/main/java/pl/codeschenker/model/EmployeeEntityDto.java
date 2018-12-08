@@ -1,4 +1,4 @@
-package pl.braintri.rest.api.model;
+package pl.codeschenker.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;

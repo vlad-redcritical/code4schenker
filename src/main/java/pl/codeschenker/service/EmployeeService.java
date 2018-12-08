@@ -1,8 +1,7 @@
-package pl.braintri.rest.api.service;
+package pl.codeschenker.service;
 
-import pl.braintri.rest.api.model.EmployeeEntity;
-import pl.braintri.rest.api.model.EmployeeEntityDto;
-import pl.braintri.rest.api.model.FilterSearchCriteriaDto;
+import pl.codeschenker.model.EmployeeEntityDto;
+import pl.codeschenker.model.FilterSearchCriteriaDto;
 
 import java.util.List;
 

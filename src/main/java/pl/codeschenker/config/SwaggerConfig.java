@@ -1,4 +1,4 @@
-package pl.braintri.rest.api.config;
+package pl.codeschenker.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
