@@ -1,21 +1,24 @@
 <template>
     <GmapMap
             :center="center"
-            :zoom="10"
+            :zoom="7"
             map-type-id="terrain"
             style="width: 100%; height: 400px;"
     >
         <GmapPolyline :path="path" :editable="false"/>
+
+        <gmap-custom-marker :marker="currentPosition">
+            <img src="../assets/truck.png" alt="DB Truck">
+        </gmap-custom-marker>
+
         <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true"
-                    :draggable="false" @click="center = m.position" @mouseover="toggleInfoWindow(m, index)"
-                    @mouseout="infoWinOpen=false"/>
+                    :draggable="false" @click="toggleInfoWindow(m, index)"/>
+
         <gmap-info-window class="sample-class" :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen"
                           @closeclick="infoWinOpen=false">
             <div v-html="infoContent"></div>
         </gmap-info-window>
-        <gmap-custom-marker :marker="center">
-            <img src="https://i.imgur.com/Zdl7JQe.png" alt="">
-        </gmap-custom-marker>
+
     </GmapMap>
 </template>
 
@@ -30,8 +33,12 @@
             return {
                 status: null,
                 center: {
-                        "lng": -87.938166,
-                        "lat": 41.746684
+                    "lng": -88.441057,
+                    "lat": 41.09381
+                },
+                currentPosition: {
+                    "lng": -88.441057,
+                    "lat": 41.09381
                 },
                 infoContent: '',
                 infoWindowPos: null,
@@ -47,13 +54,25 @@
                 markers: [
                     {
                         position: {lng: -87.619, lat: 41.87},
-                        status: `<ul class="list-unstyled">
-                                    <li>Speed: 50 km/h</li>
-                                    <li>Angle: 1 &deg;</li>
-                                    <li>Weight: 1000 kg</li>
-                                    <li>Pressure: 1000 &deg;</li>
-                                    <li>Temperature: 30 &deg;</li>
-                                </ul>`
+                        status: `<ul class="list-group">
+                                              <li class="list-group-item d-flex justify-content-between dark-blue-bg white">Speed: <span>100</span></li>
+                                              <li class="list-group-item d-flex justify-content-between">Angle: <span>100</span></li>
+                                              <li class="list-group-item d-flex justify-content-between">Weight: <span>100</span></li>
+                                              <li class="list-group-item d-flex justify-content-between">Pressure: <span>100</span></li>
+                                              <li class="list-group-item d-flex justify-content-between">Shakes: <span>100</span></li>
+                                            </ul>`
+                    }, {
+                        position: {
+                            "lng": -87.938166,
+                            "lat": 41.746684
+                        },
+                        status: `<ul class="list-group">
+                                              <li class="list-group-item d-flex justify-content-between dark-blue-bg white">Speed: <span>100</span></li>
+                                              <li class="list-group-item d-flex justify-content-between">Angle: <span>100</span></li>
+                                              <li class="list-group-item d-flex justify-content-between">Weight: <span>100</span></li>
+                                              <li class="list-group-item d-flex justify-content-between">Pressure: <span>100</span></li>
+                                              <li class="list-group-item d-flex justify-content-between">Shakes: <span>100</span></li>
+                                            </ul>`
                     },
                 ]
             };
@@ -62,6 +81,8 @@
             toggleInfoWindow: function (marker, idx) {
                 this.infoWindowPos = marker.position;
                 this.infoContent = marker.status;
+
+                this.center = marker.position;
 
                 //check if its the same marker that was selected if yes toggle
                 if (this.currentMidx == idx) {
