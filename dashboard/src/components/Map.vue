@@ -12,12 +12,16 @@
         <gmap-info-window class="sample-class" :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
             <div v-html="infoContent"></div>
         </gmap-info-window>
+        <gmap-custom-marker :marker="center">
+
+        </gmap-custom-marker>
     </GmapMap>
 </template>
 
 <script>
     import json from '../assets/route';
     import {gmapApi} from "vue2-google-maps";
+    import GmapCustomMarker from 'vue2-gmap-custom-marker';
 
     export default {
         name: "Map",
@@ -71,5 +75,8 @@
         computed: {
             google: gmapApi
         },
+        components: {
+            'gmap-custom-marker': GmapCustomMarker
+        }
     };
 </script>
