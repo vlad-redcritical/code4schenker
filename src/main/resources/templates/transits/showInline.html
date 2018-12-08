@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+    <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_transit})}|">Show Transit - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-th-fragment="inline-content" data-layout-fragment="content" data-th-object="${transit}">
+        <div>
+
+          <!-- CONTENT -->
+            <div id="mainEntityFieldSet">
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="transit-longitude-field" data-z="c3ace396">
+            	      <strong data-th-text="#{label_transit_longitude}">longitude</strong>
+                    <span data-th-text="*{{longitude}}">longitudeValue</span>
+         	        </li>
+                  <li id="transit-latitude-field" data-z="1f38aee8">
+            	      <strong data-th-text="#{label_transit_latitude}">latitude</strong>
+                    <span data-th-text="*{{latitude}}">latitudeValue</span>
+         	        </li>
+                  <li id="transit-point-field" data-z="9c290ef6">
+            	      <strong data-th-text="#{label_transit_point}">point</strong>
+                    <span data-th-text="*{{point}}">pointValue</span>
+         	        </li>
+                  <li id="transit-delivery-field" data-z="e7c8dde8">
+            	      <strong data-th-text="#{label_transit_delivery}">delivery</strong>
+                    <span data-th-text="*{{delivery}}">deliveryValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

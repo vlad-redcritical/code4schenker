@@ -1,0 +1,20 @@
+<!--TABLE-->
+<div class="table-responsive" id="containerFields" data-th-fragment="locationlog-entityModalConfirmBody" data-th-with="collectionLink=${@linkBuilder.of('LocationLogsCollectionThymeleafController')},itemLink=${@linkBuilder.of('LocationLogsItemThymeleafController')}">
+    <table id="locationlog-entity-table-item-to-remove" data-data-load-url="${collectionLink.to('datatablesByIdsIn')}">
+      <thead>
+        <tr>
+          <th data-data="dateTime" data-th-text="#{label_locationlog_datetime}">dateTime</th>
+          <th data-data="longitude" data-th-text="#{label_locationlog_longitude}">longitude</th>
+          <th data-data="latitude" data-th-text="#{label_locationlog_latitude}">latitude</th>
+        </tr>
+      </thead>
+      <tbody data-th-remove="all">
+        <tr>
+          <td>dateTime</td>
+          <td>longitude</td>
+          <td>latitude</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!-- /TABLE -->

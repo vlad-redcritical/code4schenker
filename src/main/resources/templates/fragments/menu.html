@@ -23,13 +23,13 @@
 
               <!-- Brand logo -->
               <div class="organization-logo navbar-brand">
-                <a title="petclinic" href="/" data-th-href="@{/}">
-                  <img alt="petclinic" data-th-src="@{/public/img/logo.png}" src="../../static/public/img/logo.png" />
+                <a title="route" href="/" data-th-href="@{/}">
+                  <img alt="route" data-th-src="@{/public/img/logo.png}" src="../../static/public/img/logo.png" />
                 </a>
               </div>
               <!-- Name application -->
               <div class="application-name navbar-brand hidden-xs">
-                <a data-th-title="#{label_goHome}" href="/" data-th-href="@{/}">petclinic</a>
+                <a data-th-title="#{label_goHome}" href="/" data-th-href="@{/}">route</a>
               </div>
 
             </div><!-- /navbar-header -->
@@ -37,35 +37,39 @@
             <div id="mainnav" class="navbar-collapse collapse">
 
               <ul class="nav navbar-nav" id="entitiesMenuEntries">
-                <li class="dropdown" id="owner-entry" data-z="fd544796">
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-th-utext="#{label_menu_entry(#{label_owner})}">Owner<span class="caret"></span></a>
+                <li class="dropdown" id="delivery-entry" data-z="5c5b77f7">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-th-utext="#{label_menu_entry(#{label_delivery})}">Delivery<span class="caret"></span></a>
                  <ul class="dropdown-menu">
-	                   <li><a href="/owners/create-form" data-th-href="@{/owners/create-form}" data-th-utext="#{label_create_entity(#{label_owner})}">Create Owner</a></li>
-	                  <li><a href="/owners" data-th-href="@{/owners}" data-th-utext="#{label_list_entity(#{label_owner_plural})}">List Owner</a></li>
-                      <li><a href="/owners/search/byCityLike/search-form" data-th-href="@{/owners/search/byCityLike/search-form}" data-th-text="#{label_search_entity(findByCityLike)}" id="OwnerfindByCityLike">Search findByCityLike</a></li>
-                      <li><a href="/owners/search/byFirstNameLike/search-form" data-th-href="@{/owners/search/byFirstNameLike/search-form}" data-th-text="#{label_search_entity(findByFirstNameLike)}" id="OwnerfindByFirstNameLike">Search findByFirstNameLike</a></li>
+	                   <li><a href="/deliveries/create-form" data-th-href="@{/deliveries/create-form}" data-th-utext="#{label_create_entity(#{label_delivery})}">Create Delivery</a></li>
+	                  <li><a href="/deliveries" data-th-href="@{/deliveries}" data-th-utext="#{label_list_entity(#{label_delivery_plural})}">List Delivery</a></li>
                  </ul>
                 </li>
-                <li class="dropdown" id="pet-entry" data-z="e208d556">
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-th-utext="#{label_menu_entry(#{label_pet})}">Pet<span class="caret"></span></a>
+                <li class="dropdown" id="deliveryparam-entry" data-z="c4e67876">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-th-utext="#{label_menu_entry(#{label_deliveryparam})}">DeliveryParam<span class="caret"></span></a>
                  <ul class="dropdown-menu">
-	                   <li><a href="/pets/create-form" data-th-href="@{/pets/create-form}" data-th-utext="#{label_create_entity(#{label_pet})}">Create Pet</a></li>
-	                  <li><a href="/pets" data-th-href="@{/pets}" data-th-utext="#{label_list_entity(#{label_pet_plural})}">List Pet</a></li>
-                      <li><a href="/pets/search/byNameAndWeight/search-form" data-th-href="@{/pets/search/byNameAndWeight/search-form}" data-th-text="#{label_search_entity(findByNameAndWeight)}" id="PetfindByNameAndWeight">Search findByNameAndWeight</a></li>
+	                   <li><a href="/deliveryparams/create-form" data-th-href="@{/deliveryparams/create-form}" data-th-utext="#{label_create_entity(#{label_deliveryparam})}">Create DeliveryParam</a></li>
+	                  <li><a href="/deliveryparams" data-th-href="@{/deliveryparams}" data-th-utext="#{label_list_entity(#{label_deliveryparam_plural})}">List DeliveryParam</a></li>
                  </ul>
                 </li>
-                <li class="dropdown" id="vet-entry" data-z="168efd56">
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-th-utext="#{label_menu_entry(#{label_vet})}">Vet<span class="caret"></span></a>
+                <li class="dropdown" id="locationlog-entry" data-z="1f81d636">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-th-utext="#{label_menu_entry(#{label_locationlog})}">LocationLog<span class="caret"></span></a>
                  <ul class="dropdown-menu">
-	                   <li><a href="/vets/create-form" data-th-href="@{/vets/create-form}" data-th-utext="#{label_create_entity(#{label_vet})}">Create Vet</a></li>
-	                  <li><a href="/vets" data-th-href="@{/vets}" data-th-utext="#{label_list_entity(#{label_vet_plural})}">List Vet</a></li>
+	                   <li><a href="/locationlogs/create-form" data-th-href="@{/locationlogs/create-form}" data-th-utext="#{label_create_entity(#{label_locationlog})}">Create LocationLog</a></li>
+	                  <li><a href="/locationlogs" data-th-href="@{/locationlogs}" data-th-utext="#{label_list_entity(#{label_locationlog_plural})}">List LocationLog</a></li>
                  </ul>
                 </li>
-                <li class="dropdown" id="visit-entry" data-z="de1ae796">
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-th-utext="#{label_menu_entry(#{label_visit})}">Visit<span class="caret"></span></a>
+                <li class="dropdown" id="paramlog-entry" data-z="26b9dac8">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-th-utext="#{label_menu_entry(#{label_paramlog})}">ParamLog<span class="caret"></span></a>
                  <ul class="dropdown-menu">
-	                   <li><a href="/visits/create-form" data-th-href="@{/visits/create-form}" data-th-utext="#{label_create_entity(#{label_visit})}">Create Visit</a></li>
-	                  <li><a href="/visits" data-th-href="@{/visits}" data-th-utext="#{label_list_entity(#{label_visit_plural})}">List Visit</a></li>
+	                   <li><a href="/paramlogs/create-form" data-th-href="@{/paramlogs/create-form}" data-th-utext="#{label_create_entity(#{label_paramlog})}">Create ParamLog</a></li>
+	                  <li><a href="/paramlogs" data-th-href="@{/paramlogs}" data-th-utext="#{label_list_entity(#{label_paramlog_plural})}">List ParamLog</a></li>
+                 </ul>
+                </li>
+                <li class="dropdown" id="transit-entry" data-z="590279d6">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-th-utext="#{label_menu_entry(#{label_transit})}">Transit<span class="caret"></span></a>
+                 <ul class="dropdown-menu">
+	                   <li><a href="/transits/create-form" data-th-href="@{/transits/create-form}" data-th-utext="#{label_create_entity(#{label_transit})}">Create Transit</a></li>
+	                  <li><a href="/transits" data-th-href="@{/transits}" data-th-utext="#{label_list_entity(#{label_transit_plural})}">List Transit</a></li>
                  </ul>
                 </li>
               </ul>
@@ -102,13 +106,13 @@
 
               <!-- Brand logo -->
               <div class="organization-logo navbar-brand">
-                <a title="petclinic" href="/" data-th-href="@{/}">
-                  <img alt="petclinic" data-th-src="@{/public/img/logo.png}" src="../../static/public/img/logo.png" />
+                <a title="route" href="/" data-th-href="@{/}">
+                  <img alt="route" data-th-src="@{/public/img/logo.png}" src="../../static/public/img/logo.png" />
                 </a>
               </div>
               <!-- Name application -->
               <div class="application-name navbar-brand hidden-xs">
-                <a data-th-title="#{label_goHome}" href="/" data-th-href="@{/}">petclinic</a>
+                <a data-th-title="#{label_goHome}" href="/" data-th-href="@{/}">route</a>
               </div>
 
             </div><!-- /navbar-header -->

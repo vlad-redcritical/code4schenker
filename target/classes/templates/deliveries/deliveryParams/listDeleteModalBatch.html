@@ -1,0 +1,24 @@
+<!--TABLE-->
+<div class="table-responsive" id="containerFields" data-th-fragment="deliveryparams-detailModalConfirmBody" data-th-with="collectionLink=${@linkBuilder.of('DeliveriesItemDeliveryParamsThymeleafController')}">
+    <table id="deliveryparams-detail-table-items-to-remove-batch" data-parent-table="delivery-entity-table" data-data-parent-id="${delivery != null ? delivery.id : ''}" data-data-load-url="${collectionLink.to('datatablesByIdsIn').with('delivery', '_PARENTID_')}">
+      <thead>
+        <tr>
+              <th data-data="paramName" data-th-text="#{label_delivery_deliveryparams_paramname}">paramName</th>
+              <th data-data="minValue" data-th-text="#{label_delivery_deliveryparams_minvalue}">minValue</th>
+              <th data-data="maxValue" data-th-text="#{label_delivery_deliveryparams_maxvalue}">maxValue</th>
+              <th data-data="unit" data-th-text="#{label_delivery_deliveryparams_unit}">unit</th>
+              <th data-data="delivery" data-th-text="#{label_delivery_deliveryparams_delivery}">delivery</th>
+        </tr>
+      </thead>
+      <tbody data-th-remove="all">
+        <tr>
+              <td>paramName</td>
+              <td>minValue</td>
+              <td>maxValue</td>
+              <td>unit</td>
+              <td>delivery</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!-- /TABLE -->

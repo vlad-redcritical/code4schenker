@@ -1,70 +1,43 @@
-// Spring Roo 2.0.0.RELEASE [rev 4a2e9f1] log opened at 2018-12-08 13:46:19
-project setup --topLevelPackage org.springframework.roo.petclinic
-jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
-enum type --class ~.domain.reference.PetType
-enum constant --name DOG
-enum constant --name CAT
-enum constant --name BIRD
-enum type --class ~.domain.reference.Specialty
-enum constant --name CARDIOLOGY
-enum constant --name DENTISTRY
-enum constant --name NUTRITION
-entity jpa --class ~.domain.Pet --sequenceName PET_SEQ --entityFormatExpression "#{name} (#{type})"
-entity jpa --class ~.domain.Visit --sequenceName VISIT_SEQ --entityFormatMessage visit_format
-entity jpa --class ~.domain.AbstractPerson --abstract 
-entity jpa --class ~.domain.Vet --extends ~.domain.AbstractPerson --entityFormatExpression "#{lastName} (#{specialty})"
-entity jpa --class ~.domain.Owner --extends ~.domain.AbstractPerson --entityFormatExpression "#{lastName} (#{city})"
-focus --class ~.domain.AbstractPerson
-field string --fieldName firstName --sizeMin 3 --sizeMax 30
-field string --fieldName lastName --notNull --sizeMin 3 --sizeMax 30
-field string --fieldName address --notNull --sizeMax 50 --sizeMin 1
-field string --fieldName city --notNull --sizeMax 30
-field string --fieldName telephone --notNull
-field string --fieldName homePage --sizeMax 30
-field string --fieldName email --sizeMax 30 --sizeMin 6
-field date --fieldName birthDay --type java.util.Date --notNull
-focus --class ~.domain.Visit
-field string --fieldName description --sizeMax 255
-field date --fieldName visitDate --type java.util.Date --notNull --past
-focus --class ~.domain.Pet
-field boolean --fieldName sendReminders --notNull --primitive
-field string --fieldName name --notNull --sizeMin 1
-field number --fieldName weight --type java.lang.Float --notNull --min 0
-field enum --fieldName type --type ~.domain.reference.PetType --notNull
-field set --fieldName visits --type ~.domain.Visit
-focus --class ~.domain.Vet
-field date --fieldName employedSince --type java.util.Calendar --notNull --past
-field enum --fieldName specialty --type ~.domain.reference.Specialty --notNull false
-field set --fieldName visits --type ~.domain.Visit
-focus --class ~.domain.Owner
-field set --fieldName pets --type ~.domain.Pet --mappedBy owner --notNull false --cardinality ONE_TO_MANY
-entity projection --class ~.domain.VetInfo --entity ~.domain.Vet --fields id,firstName,lastName,specialty --entityFormatExpression "#{firstName} #{lastName}"
-repository jpa --entity ~.domain.Vet --interface ~.repository.VetRepository --defaultReturnType ~.domain.VetInfo
+// Spring Roo 2.0.0.RELEASE [rev 4a2e9f1] log opened at 2018-12-08 19:40:59
+project setup --topLevelPackage org.code4schener.route
+jpa setup --provider HIBERNATE --database H2_IN_MEMORY
+entity jpa --class ~.domain.Delivery --sequenceName DELIVERY_SEQ --entityFormatExpression "#{deliveryNr} (#{clientName})"
+entity jpa --class ~.domain.Transit --sequenceName TRANSIT_SEQ --entityFormatExpression "#{longitude}, #{latitude}"
+entity jpa --class ~.domain.DeliveryParam --sequenceName DELIVERY_PARAM_SEQ --entityFormatExpression "#{paramName}"
+entity jpa --class ~.domain.LocationLog --sequenceName LOCATION_LOG_SEQ --entityFormatExpression "#{longitude}, #{latitude}"
+entity jpa --class ~.domain.ParamLog --sequenceName PARAM_LOG_SEQ --entityFormatExpression "#{paramName}"
+focus --class ~.domain.Delivery
+field string --fieldName deliveryNr --notNull --sizeMax 250 --sizeMin 3
+field string --fieldName clientName --notNull --sizeMax 250 --sizeMin 3
+focus --class ~.domain.Transit
+field string --fieldName longitude --notNull --sizeMax 100
+field string --fieldName latitude --notNull --sizeMax 100
+field string --fieldName point --notNull --sizeMax 100
+focus --class ~.domain.DeliveryParam
+field string --fieldName paramName --notNull --sizeMax 250 --sizeMin 3
+field number --fieldName minValue --notNull --type java.lang.Float
+field number --fieldName maxValue --notNull --type java.lang.Float
+field string --fieldName unit --notNull
+focus --class ~.domain.LocationLog
+field string --fieldName dateTime --notNull --sizeMax 250 --sizeMin 3
+field string --fieldName longitude --notNull --sizeMax 100
+field string --fieldName latitude --notNull --sizeMax 100
+focus --class ~.domain.ParamLog
+field string --fieldName paramName --notNull --sizeMax 250 --sizeMin 3
+field number --fieldName paramValue --notNull --type java.lang.Float
+focus --class ~.domain.Delivery
+field set --fieldName transits --type ~.domain.Transit --mappedBy delivery --notNull false --cardinality ONE_TO_MANY
+field set --fieldName deliveryParams --type ~.domain.DeliveryParam --mappedBy delivery --notNull false --cardinality ONE_TO_MANY
+field set --fieldName params --type ~.domain.ParamLog --mappedBy delivery --notNull false --cardinality ONE_TO_MANY
+focus --class ~.domain.LocationLog
+field set --fieldName params --type ~.domain.ParamLog --mappedBy location --notNull false --cardinality ONE_TO_MANY
+focus --class ~.domain.DeliveryParam
+field set --fieldName logParams --type ~.domain.ParamLog --mappedBy deliveryParam --notNull false --cardinality ONE_TO_MANY
 repository jpa --all --package ~.repository
 service --all --apiPackage ~.service.api --implPackage ~.service.impl
-dto --class ~.domain.PetNameAndWeightFormBean
-field string --fieldName name
-field number --fieldName weight --type java.lang.Float
-finder add --entity ~.domain.Pet --name findByNameAndWeight --formBean ~.domain.PetNameAndWeightFormBean
-dto --class ~.domain.OwnerFirstNameFormBean
-field string --fieldName firstName
-finder add --entity ~.domain.Owner --name findByFirstNameLike --formBean ~.domain.OwnerFirstNameFormBean
-dto --class ~.domain.OwnerCityFormBean
-field string --fieldName city
-entity projection --class ~.domain.OwnerInfo --entity ~.domain.Owner --fields id,firstName,lastName,city
-finder add --entity ~.domain.Owner --name findByCityLike --formBean ~.domain.OwnerCityFormBean --returnType ~.domain.OwnerInfo 
-finder add --entity ~.domain.Pet --name findByOwner
-finder add --entity ~.domain.Pet --name findBySendRemindersAndWeightLessThan
-finder add --entity ~.domain.Pet --name findByTypeAndNameLike
-finder add --entity ~.domain.Visit --name findByDescriptionAndVisitDate
-finder add --entity ~.domain.Visit --name findByVisitDateBetween
-finder add --entity ~.domain.Visit --name findByDescriptionLike
 web mvc setup
 web mvc view setup --type THYMELEAF
-web mvc controller --all --responseType JSON
 web mvc controller --all --responseType THYMELEAF
-web mvc finder --all --responseType THYMELEAF
-web mvc detail --entity ~.domain.Owner --field pets --views list,show,findByCityLike --responseType THYMELEAF
+web mvc controller --all --pathPrefix /api --responseType JSON
 web mvc detail --all --views list,show --responseType THYMELEAF
-web mvc language --code es
-// [failed] script --file clinic.roo
+// [failed] script --file route.roo
