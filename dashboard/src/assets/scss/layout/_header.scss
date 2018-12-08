@@ -1,0 +1,19 @@
+.logo {
+    text-transform: uppercase;
+    color: $logo;
+    font-weight: 700;
+    transition: color 0.5s;
+
+    .number {
+        color: #000;
+        transition: color 0.5s;
+    }
+
+    &:hover {
+        color: #000;
+
+        .number {
+            color: $logo;
+        }
+    }
+}

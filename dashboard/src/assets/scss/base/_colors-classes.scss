@@ -1,0 +1,27 @@
+.info {
+  color: $info;
+  &-bg {
+    background: $info;
+  }
+}
+
+.success {
+  color: $success;
+  &-bg {
+    background: $success;
+  }
+}
+
+.warning {
+  color: $warning;
+  &-bg {
+    background: $warning;
+  }
+}
+
+.danger {
+  color: $danger;
+  &-bg {
+    background: $danger;
+  }
+}
