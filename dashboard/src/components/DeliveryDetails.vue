@@ -1,11 +1,11 @@
 <template>
-  <b-card header="Delivery info">
-    <ul class="list-unstyled">
-      <li>Speed: {{speed}}</li>
-      <li>Angle: {{angle}}</li>
-      <li>Weight: {{weight}}</li>
-      <li>Pressure: {{pressure}}</li>
-      <li>Shakes: {{shakes}}</li>
+  <b-card header="Current details">
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between">Speed: <span>{{speed}}</span></li>
+      <li class="list-group-item d-flex justify-content-between">Angle: <span>{{angle}}</span></li>
+      <li class="list-group-item d-flex justify-content-between">Weight: <span>{{weight}}</span></li>
+      <li class="list-group-item d-flex justify-content-between">Pressure: <span>{{pressure}}</span></li>
+      <li class="list-group-item d-flex justify-content-between">Shakes: <span>{{shakes}}</span></li>
     </ul>
   </b-card>
 </template>

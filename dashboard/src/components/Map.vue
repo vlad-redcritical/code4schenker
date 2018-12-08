@@ -8,12 +8,13 @@
         <GmapPolyline :path="path" :editable="false"/>
         <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true"
                     :draggable="false" @click="center = m.position" @mouseover="toggleInfoWindow(m, index)"
-                    @mouseout="status = null"/>
-        <gmap-info-window class="sample-class" :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
+                    @mouseout="infoWinOpen=false"/>
+        <gmap-info-window class="sample-class" :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen"
+                          @closeclick="infoWinOpen=false">
             <div v-html="infoContent"></div>
         </gmap-info-window>
         <gmap-custom-marker :marker="center">
-
+            <img src="https://i.imgur.com/Zdl7JQe.png" alt="">
         </gmap-custom-marker>
     </GmapMap>
 </template>
@@ -28,7 +29,10 @@
         data() {
             return {
                 status: null,
-                center: {lng: -87.619, lat: 41.87},
+                center: {
+                        "lng": -87.938166,
+                        "lat": 41.746684
+                },
                 infoContent: '',
                 infoWindowPos: null,
                 infoWinOpen: false,
@@ -69,7 +73,6 @@
                     this.currentMidx = idx;
 
                 }
-                console.log(this.infoContent);
             }
         },
         computed: {
