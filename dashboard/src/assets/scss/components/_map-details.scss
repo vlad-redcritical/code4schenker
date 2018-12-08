@@ -1,0 +1,13 @@
+.map-details-view {
+  padding: 20px 0;
+}
+
+.map-info {
+  top: 0;
+  right: 0;
+  color: white;
+  position: absolute;
+  z-index: 100;
+  background: rgba($logo, 0.8);
+  padding: 8px;
+}

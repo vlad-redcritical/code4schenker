@@ -1,5 +1,5 @@
 <template>
-  <div class="driver">
+  <div class="map-details-view">
     <b-row>
       <b-col cols="8">
         <Map/>

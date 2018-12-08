@@ -5,5 +5,10 @@
 @import 'base/reset';
 @import 'base/colors';
 
+// Components
+@import 'components/alerts';
+@import 'components/cards';
+@import 'components/map-details';
+
 // Layout
 @import 'layout/header';

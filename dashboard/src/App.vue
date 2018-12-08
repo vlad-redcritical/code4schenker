@@ -1,18 +1,20 @@
 <template>
-  <b-container id="app">
-    <Header/>
-
-    <router-view></router-view>
-  </b-container>
+    <b-container id="app">
+        <Header/>
+        <Alerts/>
+        <router-view></router-view>
+    </b-container>
 </template>
 
 <script>
-import Header from "./components/Header.vue";
+    import Alerts from './components/Alerts';
+    import Header from "./components/Header.vue";
 
-export default {
-  name: "app",
-  components: {
-    Header
-  }
-};
+    export default {
+        name: "app",
+        components: {
+            Header,
+            Alerts
+        }
+    };
 </script>
