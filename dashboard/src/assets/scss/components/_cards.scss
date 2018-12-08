@@ -1,0 +1,17 @@
+.card {
+    border-radius: 0;
+}
+
+.card-header {
+    color: $white;
+    font-weight: 700;
+    background: $dark-blue;
+}
+
+.card-body {
+    .list-unstyled {
+        li {
+            padding: 8px 0;
+        }
+    }
+}
