@@ -5,9 +5,10 @@
             map-type-id="terrain"
             style="width: 100%; height: 400px;"
     >
-        <!-- <GmapPolyline :path="markers" :editable="false"/> -->
+        <GmapPolyline :path="path" :editable="false"/>
         <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true"
-                    :draggable="false" @click="center = m.position" @mouseover="status = m.status" @mouseout="status = null"/>
+                    :draggable="false" @click="center = m.position" @mouseover="status = m.status"
+                    @mouseout="status = null"/>
 
         <div slot="visible" v-if="status">
             <div class="map-info" v-html="status">
@@ -36,6 +37,20 @@
                         height: -35
                     }
                 },
+                path: [
+                    {
+                        lat: 52,
+                        lng: 21
+                    },
+                    {
+                        lat: 52.14,
+                        lng: 21.04
+                    },
+                    {
+                        lat: 52.14,
+                        lng: 21.15
+                    }
+                ],
                 markers: [
                     {
                         position: {
@@ -51,7 +66,13 @@
                             lat: 52.14,
                             lng: 21.04
                         },
-                        status: 'some other text'
+                        status: `<ul class="list-unstyled">
+                                    <li>Speed: 50 km/h</li>
+                                    <li>Angle: 1 &deg;</li>
+                                    <li>Weight: 1000 kg</li>
+                                    <li>Pressure: 1000 &deg;</li>
+                                    <li>Temperature: 30 &deg;</li>
+                                </ul>`
                     },
                     {
                         position: {
