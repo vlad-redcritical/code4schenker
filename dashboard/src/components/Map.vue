@@ -6,15 +6,12 @@
             style="width: 100%; height: 400px;"
     >
         <GmapPolyline :path="path" :editable="false"/>
-        <!--<GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true"-->
-                    <!--:draggable="false" @click="center = m.position" @mouseover="status = m.status"-->
-                    <!--@mouseout="status = null"/>-->
-
-        <div slot="visible" v-if="status">
-            <div class="map-info" v-html="status">
-
-            </div>
-        </div>
+        <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true"
+                    :draggable="false" @click="center = m.position" @mouseover="toggleInfoWindow(m, index)"
+                    @mouseout="status = null"/>
+        <gmap-info-window class="sample-class" :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
+            <div v-html="infoContent"></div>
+        </gmap-info-window>
     </GmapMap>
 </template>
 
@@ -41,19 +38,7 @@
                 path: json,
                 markers: [
                     {
-                        position: {
-                            lat: 52,
-                            lng: 21
-                        },
-                        status: `Speed: 100 <br />
-                        Weight: 200<br />
-                        Temperatue: 30`
-                    },
-                    {
-                        position: {
-                            lat: 52.14,
-                            lng: 21.04
-                        },
+                        position: {lng: -87.619, lat: 41.87},
                         status: `<ul class="list-unstyled">
                                     <li>Speed: 50 km/h</li>
                                     <li>Angle: 1 &deg;</li>
@@ -62,15 +47,26 @@
                                     <li>Temperature: 30 &deg;</li>
                                 </ul>`
                     },
-                    {
-                        position: {
-                            lat: 52.14,
-                            lng: 21.15
-                        },
-                        status: 'some other text'
-                    },
                 ]
             };
+        },
+        methods: {
+            toggleInfoWindow: function (marker, idx) {
+                this.infoWindowPos = marker.position;
+                this.infoContent = marker.status;
+
+                //check if its the same marker that was selected if yes toggle
+                if (this.currentMidx == idx) {
+                    this.infoWinOpen = !this.infoWinOpen;
+                }
+                //if different marker set infowindow to open and reset current marker index
+                else {
+                    this.infoWinOpen = true;
+                    this.currentMidx = idx;
+
+                }
+                console.log(this.infoContent);
+            }
         },
         computed: {
             google: gmapApi
