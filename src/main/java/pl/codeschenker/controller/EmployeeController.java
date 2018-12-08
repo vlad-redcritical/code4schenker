@@ -14,9 +14,9 @@ public class EmployeeController {
     @Autowired
     private DeliveryService deliveryService;
 
-    @GetMapping(value = "/details", produces = "application/json")
-    public List<PointDto> findAll() {
-        return deliveryService.findAll();
+    @GetMapping(value = "/details/{id}", produces = "application/json")
+    public PointDto findOne (@PathVariable(name = "id") Long id) {
+        return deliveryService.findOne(id);
     }
 
 }

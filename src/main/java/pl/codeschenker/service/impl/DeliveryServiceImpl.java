@@ -14,7 +14,6 @@ import pl.codeschenker.repository.PointRepository;
 import pl.codeschenker.service.DeliveryService;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,15 +25,15 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 
     @Override
-    public List<PointDto> findAll() {
-        return pointRepository.findAll().stream().map(this::mapPointToDto).collect(Collectors.toList());
+    public PointDto findOne(Long id) {
+        return mapPointToDto(pointRepository.findOne(id));
     }
 
 
     private ParamLogDto mapParamLogToDto(ParamLogEntity entity) {
         ParamLogDto dto = new ParamLogDto();
         dto.setId(entity.getId());
-        dto.setValue(entity.getValue());
+        dto.setCurrentValue(entity.getValue());
         dto.setDeliveryParamDto(mapDeliveryParamToDto(entity.getDeliveryParamEntity()));
 
         return dto;
