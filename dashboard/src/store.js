@@ -5,7 +5,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        alerts: []
+        alerts: [{
+            ID: Date.now(),
+            message: "It's an alert"
+        }]
     },
     getters: {
         getAlerts: state => {

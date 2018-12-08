@@ -11,12 +11,8 @@
       </b-navbar-brand>
 
       <b-navbar-nav class="ml-auto">
-        <b-nav-item>
-          <router-link :to="{name: 'driver'}">Driver View</router-link>
-        </b-nav-item>
-        <b-nav-item>
-          <router-link :to="{name: 'customer'}">Customer Customer</router-link>
-        </b-nav-item>
+        <router-link class="nav-item" :to="{name: 'driver'}">Driver View</router-link>
+        <router-link class="nav-item" :to="{name: 'customer'}">Customer Customer</router-link>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
