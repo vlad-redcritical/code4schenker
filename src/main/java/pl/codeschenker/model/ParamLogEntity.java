@@ -16,14 +16,11 @@ public class ParamLogEntity implements Serializable {
     private Long id;
 
     @ManyToOne
-    private DeliveryParamEntity paramID;
+    private DeliveryParamEntity deliveryParamEntity;
 
     @NotBlank
     private String value;
 
     @ManyToOne
-    private DeliveryEntity idDelivery;
-
-    @ManyToOne
-    private LocationLogEntity idLocation;
+    private PointEntity pointEntity;
 }

@@ -6,11 +6,12 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "LOCATION_LOG")
-public class LocationLogEntity implements Serializable {
+public class PointEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,4 +26,10 @@ public class LocationLogEntity implements Serializable {
 
     @NotBlank
     private String longitude;
+
+    @ManyToOne
+    private DeliveryEntity deliveryEntity;
+
+    @OneToMany(mappedBy = "pointEntity")
+    private List<ParamLogEntity> paramLogEntities;
 }

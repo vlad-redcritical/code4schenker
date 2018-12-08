@@ -10,6 +10,7 @@ import lombok.ToString;
 @ToString
 public class ParamLogDto {
     private Long id;
-    private String paramId;
+    private DeliveryParamDto deliveryParamDto;
     private String value;
+    private PointDto pointDto;
 }
