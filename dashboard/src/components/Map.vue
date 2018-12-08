@@ -6,9 +6,9 @@
             style="width: 100%; height: 400px;"
     >
         <GmapPolyline :path="path" :editable="false"/>
-        <GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true"
-                    :draggable="false" @click="center = m.position" @mouseover="status = m.status"
-                    @mouseout="status = null"/>
+        <!--<GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true"-->
+                    <!--:draggable="false" @click="center = m.position" @mouseover="status = m.status"-->
+                    <!--@mouseout="status = null"/>-->
 
         <div slot="visible" v-if="status">
             <div class="map-info" v-html="status">
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+    import json from '../assets/route';
     import {gmapApi} from "vue2-google-maps";
 
     export default {
@@ -26,7 +27,7 @@
         data() {
             return {
                 status: null,
-                center: {lat: 52.14, lng: 21.14},
+                center: {lng: -87.619, lat: 41.87},
                 infoContent: '',
                 infoWindowPos: null,
                 infoWinOpen: false,
@@ -37,20 +38,7 @@
                         height: -35
                     }
                 },
-                path: [
-                    {
-                        lat: 52,
-                        lng: 21
-                    },
-                    {
-                        lat: 52.14,
-                        lng: 21.04
-                    },
-                    {
-                        lat: 52.14,
-                        lng: 21.15
-                    }
-                ],
+                path: json,
                 markers: [
                     {
                         position: {
@@ -86,6 +74,6 @@
         },
         computed: {
             google: gmapApi
-        }
+        },
     };
 </script>
