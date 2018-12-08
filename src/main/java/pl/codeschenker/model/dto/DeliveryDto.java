@@ -9,8 +9,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class DeliveryDto {
-
-
     private Long id;
     private String deliveryNr;
     private String clientName;
