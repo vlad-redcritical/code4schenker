@@ -1,6 +1,5 @@
 package pl.codeschenker.model;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -14,10 +13,7 @@ import java.util.List;
 @ToString
 public class FilterSearchCriteriaDto {
 
-	@ApiModelProperty(notes = "Which field to search", example = "name")
-	private String searchType;
-	@ApiModelProperty(notes = "Search criteria", example = "[\"Vladislav\"]")
-	private List<String> searchParams;
-	@ApiModelProperty(notes = "Sort by for ex:  name", example = "lastname")
-	private String sortBy;
+    private String searchType;
+    private List<String> searchParams;
+    private String sortBy;
 }

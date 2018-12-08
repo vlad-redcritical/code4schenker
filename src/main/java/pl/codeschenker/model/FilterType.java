@@ -6,9 +6,7 @@ import lombok.Getter;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-/**
- * Created by EO NETWORKS on 02.10.2017.
- */
+
 @AllArgsConstructor
 @Getter
 public enum FilterType {
