@@ -33,8 +33,8 @@ field number --fieldName maxValue --notNull --type java.lang.Float
 field string --fieldName unit --notNull
 
 focus --class ~.domain.LocationLog
-// field date --fieldName dateTime --type java.util.Date --persistenceType JPA_TIMESTAMP
-field string --fieldName dateTime --notNull --sizeMax 250 --sizeMin 3
+field date --fieldName dateTime --type java.util.Date --persistenceType JPA_TIMESTAMP
+// field string --fieldName dateTime --notNull --sizeMax 250 --sizeMin 3
 field string --fieldName longitude --notNull --sizeMax 100
 field string --fieldName latitude --notNull --sizeMax 100
 
@@ -64,7 +64,8 @@ web mvc controller --all --responseType THYMELEAF
 web mvc controller --all --pathPrefix /api --responseType JSON
 
 // Adding details
-web mvc detail --all --views list,show --responseType THYMELEAF
+web mvc detail --entity ~.domain.Delivery --field deliveryParams --views list,show --responseType THYMELEAF
+web mvc detail --entity ~.domain.LocationLog --field params --views list,show --responseType THYMELEAF
 
 // Setup Jpa Audit and include audit in entities
 jpa audit setup
