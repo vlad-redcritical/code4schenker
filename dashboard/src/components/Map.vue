@@ -51,15 +51,23 @@
         },
         methods: {
             setMarker(marker) {
-                let status = `<ul class="list-group">`;
-                status = status + `<li style="background-color: darkblue; color: white;" class="text-center list-group-item d-flex justify-content-center">${moment(marker.timestamp).format('YYYY-MM-DD HH:mm')}</li>`;
+                let output = `<ul class="list-group">`;
+                output = output + `<li style="background-color: darkblue; color: white;" class="text-center list-group-item d-flex justify-content-center">${moment(marker.timestamp).format('YYYY-MM-DD HH:mm')}</li>`;
                 marker.paramLogDtos.forEach(element => {
-                    status = status + `<li class="list-group-item d-flex justify-content-between">${element.deliveryParamDto.paramName}: <span>${element.deliveryParamDto.currentValue} ${element.deliveryParamDto.paramUnit}</span></li>`
+                    const {deliveryParamDto} = element;
+
+                    let status = (deliveryParamDto.currentValue > deliveryParamDto.maxValue * 0.8 || deliveryParamDto.currentValue < deliveryParamDto.minValue * 0.8) ? 'warning' : 'success';
+
+                    if (status !== 'success') {
+                        status = (deliveryParamDto.currentValue > deliveryParamDto.maxValue || deliveryParamDto.currentValue < deliveryParamDto.minValue) ? 'danger' : 'warning';
+                    }
+
+                    output = output + `<li class="list-group-item d-flex justify-content-between ${status}">${element.deliveryParamDto.paramName}: <span>${element.deliveryParamDto.currentValue} ${element.deliveryParamDto.paramUnit}</span></li>`
                 });
-                status = status + `</ul>`;
+                output = output + `</ul>`;
 
                 return {
-                    status,
+                    status: output,
                     display: false,
                     position: marker.position
                 }

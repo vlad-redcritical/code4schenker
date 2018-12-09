@@ -22,7 +22,9 @@
 }
 
 .danger {
-  color: $danger;
+  color: $white;
+  background: rgba($danger, 0.75);
+  font-weight: 700;
   &-bg {
     background: $danger;
     color: white;
