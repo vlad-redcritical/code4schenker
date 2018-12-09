@@ -10,10 +10,26 @@
 }
 
 .card-body {
+  padding: 0;
     .list-unstyled {
+
          li {
 
          }
      }
 
+}
+
+.alert {
+
+margin-top: 1rem;
+color: white;
+}
+
+.alert-warning{
+  background-color: #e67e22;
+}
+
+.alert-danger{
+  background-color: #e74c3c;
 }
