@@ -2,6 +2,7 @@
     <GmapMap
             :center="center"
             :zoom="7"
+            :options="mapOptions"
             map-type-id="terrain"
             style="width: 100%; height: 450px; border-style: solid; border-width: 1.5px; border-color: lightgray;"
     >
@@ -40,7 +41,10 @@
                     lng: 0
                 },
                 path: [],
-                markers: []
+                markers: [],
+                mapOptions: {
+                    disableDefaultUI : true
+                }
             };
         },
         computed: {
