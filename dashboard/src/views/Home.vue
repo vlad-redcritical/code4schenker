@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+  <div class="home d-flex justify-content-center">
+    <img alt="Vue logo" src="../assets/logo.jpg">
   </div>
 </template>
 
