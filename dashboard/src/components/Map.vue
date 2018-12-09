@@ -29,6 +29,7 @@
         name: "Map",
         data() {
             return {
+                timer: null,
                 status: null,
                 center: {
                     lat: 0,
@@ -51,7 +52,7 @@
         methods: {
             setMarker(marker) {
                 let status = `<ul class="list-group">`;
-                status = status + `<li  style="background-color: darkblue; color: white;" class="list-group-item d-flex justify-content-between">${moment(marker.timestamp).format('YYYY-MM-DD')}</li>`;
+                status = status + `<li style="background-color: darkblue; color: white;" class="text-center list-group-item d-flex justify-content-between">${moment(marker.timestamp).format('YYYY-MM-DD H:m')}</li>`;
                 marker.paramLogDtos.forEach(element => {
                     status = status + `<li class="list-group-item d-flex justify-content-between">${element.deliveryParamDto.paramName}: <span>${element.deliveryParamDto.currentValue} ${element.deliveryParamDto.paramUnit}</span></li>`
                 });
@@ -62,34 +63,40 @@
                     display: false,
                     position: marker.position
                 }
+            },
+            getRecords() {
+                let recordID = 13;
+                this.timer = setInterval(() => {
+                        axios.get(`${process.env.VUE_APP_API_URL}details/${recordID}`)
+                            .then(response => {
+                                const responseData = response.data;
+
+                                if (this.center.lat === 0) {
+                                    this.center = responseData.position;
+                                }
+
+                                this.currentPosition = responseData.position;
+                                this.path.push(responseData.position);
+
+
+                                this.markers.push(this.setMarker(responseData));
+                                this.$store.commit('addDetails', responseData.paramLogDtos);
+                                this.$store.commit('setTimestamp', responseData.timestamp);
+                            }).catch(error => {
+                            console.log(error);
+                            clearInterval(this.timer);
+                        });
+
+                        recordID = recordID + 1;
+                    }
+                    , 3000);
             }
         },
         mounted() {
-            let recordID = 13;
-
-            let timer = setInterval(() => {
-                    axios.get(`${process.env.VUE_APP_API_URL}details/${recordID}`)
-                        .then(response => {
-                            const responseData = response.data;
-
-                            if (this.center.lat === 0) {
-                                this.center = responseData.position;
-                            }
-
-                            this.currentPosition = responseData.position;
-                            this.path.push(responseData.position);
-
-
-                            this.markers.push(this.setMarker(responseData));
-                            this.$store.commit('addDetails', responseData.paramLogDtos);
-                        }).catch(error => {
-                        console.log(error);
-                        clearInterval(timer);
-                    });
-
-                    recordID = recordID + 1;
-                }
-                , 10000000);
+            this.getRecords();
+        },
+        beforeDestroy() {
+            clearInterval(this.timer);
         }
     };
 </script>

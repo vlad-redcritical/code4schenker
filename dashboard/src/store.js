@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         alerts: [],
-        details: {}
+        details: {},
+        timestamp: null
     },
     getters: {
         getAlerts: state => {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
         },
         getDetails: state => {
             return state.details
+        },
+        getTimestamp: state => {
+            return state.timestamp;
         }
     },
     mutations: {
@@ -24,6 +28,9 @@ export default new Vuex.Store({
             };
 
             state.alerts.push(alert);
+        },
+        setTimestamp: (state, payLoad) => {
+            state.timestamp = payLoad
         },
         addDetails: (state, payLoad) => {
             state.details = payLoad
