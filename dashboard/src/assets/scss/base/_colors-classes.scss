@@ -29,3 +29,15 @@
 
   }
 }
+
+.dark-blue {
+  color: $dark-blue;
+
+  &-bg {
+    background: $dark-blue;
+  }
+}
+
+.white {
+  color: $white;
+}

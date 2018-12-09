@@ -1,0 +1,8 @@
+$circle-dimensions: 24px;
+
+.circle {
+  width: $circle-dimensions;
+  height: $circle-dimensions;
+  margin: 0 auto;
+  border-radius: 50% !important;
+}

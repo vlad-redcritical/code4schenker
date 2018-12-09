@@ -4,8 +4,10 @@
 // Base
 @import 'base/reset';
 @import 'base/colors';
+@import 'base/colors-classes';
 
 // Components
+@import 'components/circles';
 @import 'components/navbar';
 @import 'components/alerts';
 @import 'components/cards';
