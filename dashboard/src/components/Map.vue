@@ -1,23 +1,26 @@
 <template>
-    <GmapMap
-            :center="center"
-            :zoom="7"
-            :options="mapOptions"
-            map-type-id="terrain"
-            style="width: 100%; height: 450px; border-style: solid; border-width: 1.5px; border-color: lightgray;"
-    >
-        <GmapPolyline :path="path" :editable="false"/>
+    <div>
+        <GmapMap
+                :center="center"
+                :zoom="7"
+                :options="mapOptions"
+                map-type-id="terrain"
+                style="width: 100%; height: 450px; border-style: solid; border-width: 1.5px; border-color: lightgray;"
+        >
+            <GmapPolyline :path="path" :editable="false"/>
 
-        <gmap-custom-marker :marker="currentPosition">
-            <img src="../assets/truck.png" alt="DB Truck">
-        </gmap-custom-marker>
+            <gmap-custom-marker :marker="currentPosition">
+                <img src="../assets/truck.png" alt="DB Truck">
+            </gmap-custom-marker>
 
-        <gmap-custom-marker :key="index" v-for="(m,index) in markers" :marker="m.position">
-            <div class="details" :class="{recordDetails: m.display}"
-                 style="width: 200px; position: relative; bottom: 20px; opacity: 0;" v-html="m.status"></div>
-            <div class="circle info-bg" @click="m.display = !m.display" style="position: relative; top: 10px;"></div>
-        </gmap-custom-marker>
-    </GmapMap>
+            <gmap-custom-marker :key="index" v-for="(m,index) in markers" :marker="m.position">
+                <div class="details" :class="{recordDetails: m.display}"
+                     style="width: 200px; position: relative; bottom: 20px; opacity: 0;" v-html="m.status"></div>
+                <div class="circle info-bg" @click="m.display = !m.display" style="position: relative; top: 10px;"></div>
+            </gmap-custom-marker>
+        </GmapMap>
+        <b-btn class="w-100" @click="stopTimer">Start / Stop Simulation</b-btn>
+    </div>
 </template>
 
 <script>
@@ -30,6 +33,7 @@
         name: "Map",
         data() {
             return {
+                recordID: 13,
                 timer: null,
                 status: null,
                 center: {
@@ -54,6 +58,14 @@
             'gmap-custom-marker': GmapCustomMarker
         },
         methods: {
+            stopTimer() {
+                if (this.timer) {
+                    clearInterval(this.timer);
+                    this.timer = null;
+                } else {
+                    this.getRecords();
+                }
+            },
             setMarker(marker) {
                 let output = `<ul class="list-group">`;
                 output = output + `<li style="background-color: darkblue; color: white;" class="text-center list-group-item d-flex justify-content-center">${moment(marker.timestamp).format('YYYY-MM-DD HH:mm')}</li>`;
@@ -91,9 +103,8 @@
                 }
             },
             getRecords() {
-                let recordID = 13;
                 this.timer = setInterval(() => {
-                        axios.get(`${process.env.VUE_APP_API_URL}details/${recordID}`)
+                        axios.get(`${process.env.VUE_APP_API_URL}details/${this.recordID}`)
                             .then(response => {
                                 const responseData = response.data;
 
@@ -114,7 +125,7 @@
                             clearInterval(this.timer);
                         });
 
-                        recordID = recordID + 1;
+                        this.recordID = this.recordID + 1;
                     }
                     , 3000);
             }
