@@ -21,6 +21,7 @@
 
 <script>
     import axios from 'axios';
+    import moment from 'moment';
     import {gmapApi} from "vue2-google-maps";
     import GmapCustomMarker from 'vue2-gmap-custom-marker';
 
@@ -50,9 +51,9 @@
         methods: {
             setMarker(marker) {
                 let status = `<ul class="list-group">`;
-                 status = status + `<li  style="background-color: darkblue; color: white;" class="list-group-item d-flex justify-content-between">${marker.timestamp}</li>`;
+                status = status + `<li  style="background-color: darkblue; color: white;" class="list-group-item d-flex justify-content-between">${moment(marker.timestamp).format('YYYY-MM-DD')}</li>`;
                 marker.paramLogDtos.forEach(element => {
-                    status = status + `<li class="list-group-item d-flex justify-content-between">${element.paramName}: <span>${element.currentValue} ${element.paramUnit}</span></li>`
+                    status = status + `<li class="list-group-item d-flex justify-content-between">${element.deliveryParamDto.paramName}: <span>${element.deliveryParamDto.currentValue} ${element.deliveryParamDto.paramUnit}</span></li>`
                 });
                 status = status + `</ul>`;
 
@@ -70,7 +71,7 @@
                     axios.get(`${process.env.VUE_APP_API_URL}details/${recordID}`)
                         .then(response => {
                             const responseData = response.data;
-                            console.log(recordID);
+
                             if (this.center.lat === 0) {
                                 this.center = responseData.position;
                             }
@@ -88,7 +89,7 @@
 
                     recordID = recordID + 1;
                 }
-                , 3000);
+                , 10000000);
         }
     };
 </script>
