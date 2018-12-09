@@ -17,8 +17,13 @@
 </template>
 
 <script>
+    import { GChart } from 'vue-google-charts'
+
     export default {
         name: "DeliveryDetails",
+        components: {
+            GChart
+        },
         computed: {
             details() {
                 return this.$store.getters.getDetails
