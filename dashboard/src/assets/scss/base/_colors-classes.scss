@@ -15,7 +15,7 @@
 .warning {
   color: $warning;
   &-bg {
-    background: $warning;
+    background: $warning !important;
     color: white;
 
   }
@@ -30,6 +30,10 @@
     color: white;
 
   }
+}
+
+.circle-danger-bg {
+  background: $danger;
 }
 
 .white {

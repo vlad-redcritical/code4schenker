@@ -24,7 +24,7 @@ export default new Vuex.Store({
                         danger: false
                     };
 
-                    status.warning = (value.currentValue > value.maxValue * 0.8 || value.currentValue < value.minValue * 0.8) ? true : false;
+                    status.warning = (value.currentValue > value.maxValue * 0.8 || value.currentValue < value.minValue * 1.2) ? true : false;
 
                     if (status.warning) {
                         status.danger = (value.currentValue > value.maxValue || value.currentValue < value.minValue) ? true : false;

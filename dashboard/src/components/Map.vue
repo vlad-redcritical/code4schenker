@@ -16,7 +16,7 @@
             <gmap-custom-marker :key="index" v-for="(m,index) in markers" :marker="m.position">
                 <div class="details" :class="{recordDetails: m.display}"
                      style="width: 200px; position: relative; bottom: 20px; opacity: 0;" v-html="m.status"></div>
-                <div class="circle info-bg" @click="m.display = !m.display" style="position: relative; top: 10px;"></div>
+                <div :class="['circle', {'info-bg': m.boxColor.success}, {'warning-bg': m.boxColor.warning}, {'circle-danger-bg': m.boxColor.danger}]" @click="m.display = !m.display" style="position: relative; top: 10px;"></div>
             </gmap-custom-marker>
         </GmapMap>
         <b-btn class="w-100" @click="stopTimer">Start / Stop Simulation</b-btn>
@@ -68,30 +68,41 @@
             },
             setMarker(marker) {
                 let output = `<ul class="list-group">`;
+                let status = {
+                    success: true,
+                    warning: false,
+                    danger: false
+                };
                 output = output + `<li style="background-color: darkblue; color: white;" class="text-center list-group-item d-flex justify-content-center">${moment(marker.timestamp).format('YYYY-MM-DD HH:mm')}</li>`;
                 marker.paramLogDtos.forEach(element => {
                     const {deliveryParamDto} = element;
 
-                    let status = (deliveryParamDto.currentValue > deliveryParamDto.maxValue * 0.8 || deliveryParamDto.currentValue < deliveryParamDto.minValue * 0.8) ? 'warning' : 'success';
+                    status.warning = (deliveryParamDto.currentValue > deliveryParamDto.maxValue * 0.8 || deliveryParamDto.currentValue < deliveryParamDto.minValue * 1.2) ? true : false;
 
-                    if (status !== 'success') {
-                        status = (deliveryParamDto.currentValue > deliveryParamDto.maxValue || deliveryParamDto.currentValue < deliveryParamDto.minValue) ? 'danger' : 'warning';
+                    if (status.warning) {
+                        status.danger = (deliveryParamDto.currentValue > deliveryParamDto.maxValue || deliveryParamDto.currentValue < deliveryParamDto.minValue) ? true : false;
                     }
 
-                    if (status === 'warning') {
+                    if (status.danger) {
+                        this.$store.commit('addAlerts', {
+                            message: `${deliveryParamDto.paramName} went out of the limit`
+                        });
+                    } else if (status.warning) {
                         this.$store.commit('addAlerts', {
                             variant: 'warning',
                             message: `${deliveryParamDto.paramName} is close to the limit`
                         })
                     }
 
-                    if (status === 'danger') {
-                        this.$store.commit('addAlerts', {
-                            message: `${deliveryParamDto.paramName} went out of the limit`
-                        });
+                    let color = 'success';
+                    if (status.warning) {
+                        color = 'warning';
+                    }
+                    if (status.danger) {
+                        color = 'danger';
                     }
 
-                    output = output + `<li class="list-group-item d-flex justify-content-between ${status}">${element.deliveryParamDto.paramName}: <span>${element.deliveryParamDto.currentValue} ${element.deliveryParamDto.paramUnit}</span></li>`
+                    output = output + `<li class="list-group-item d-flex justify-content-between ${color}">${element.deliveryParamDto.paramName}: <span>${element.deliveryParamDto.currentValue} ${element.deliveryParamDto.paramUnit}</span></li>`
                 });
                 output = output + `</ul>`;
 
