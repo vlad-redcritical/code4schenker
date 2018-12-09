@@ -110,6 +110,7 @@
                 }
             },
             getRecords() {
+                const time = this.$route.name === 'customer' ? 1000 : 5000;
                 this.timer = setInterval(() => {
                         axios.get(`${process.env.VUE_APP_API_URL}details/${this.recordID}`)
                             .then(response => {
@@ -134,7 +135,7 @@
 
                         this.recordID = this.recordID + 1;
                     }
-                    , 1000);
+                    , time);
             }
         },
         mounted() {
