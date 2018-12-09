@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Params</h2>
+
+<p id="x">param</p>
+
+<script>
+    var startDate = new Date("2015-03-25T12:00:00Z");
+    var endDate = new Date("2015-03-25T12:20:00Z");
+
+    var prevValue = 63;
+    var value = 67;
+
+    var minValue = 10;
+    var maxValue = 70;
+    var range = maxValue - minValue;
+    var orangeDown = minValue + range * 0.2;
+    var orangeUp = maxValue - range * 0.2;
+
+    if (value > maxValue) {
+        document.getElementById("x").style.color = "red";
+// up
+    } else if (value < minValue) {
+        document.getElementById("x").style.color = "red";
+// down
+    } else if (value > orangeUp) {
+        if (prevValue < value) {
+            var minutes = Math.round(getMinutesBetweenDates(startDate, endDate) * (maxValue - value) / (value - prevValue));
+            document.getElementById("x").innerHTML = minutes + " minutes to red up";
+        }
+        document.getElementById("x").style.color = "orange";
+// up
+    } else if (value < orangeDown) {
+        if (prevValue > value) {
+            var minutes = Math.round(getMinutesBetweenDates(startDate, endDate) * (value - minValue) / (prevValue - value));
+            document.getElementById("x").innerHTML = minutes + " minutes to red down";
+        }
+        document.getElementById("x").style.color = "orange";
+// down
+    } else {
+        document.getElementById("x").style.color = "green";
+    }
+
+    function getMinutesBetweenDates(startDate, endDate) {
+        var diff = endDate.getTime() - startDate.getTime();
+        return (diff / 60000);
+    }
+</script>
+
+</body>
+</html>
