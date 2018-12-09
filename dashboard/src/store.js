@@ -14,7 +14,34 @@ export default new Vuex.Store({
             return state.alerts;
         },
         getDetails: state => {
-            return state.details
+            if (state.details.length){
+                const data = state.details.map(element => {
+                    const value = element.deliveryParamDto;
+
+                    let status = {
+                        success: true,
+                        warning: false,
+                        danger: false
+                    };
+
+                    status.warning = (value.currentValue > value.maxValue * 0.8 || value.currentValue < value.minValue * 0.8) ? true : false;
+
+                    if (status.warning) {
+                        status.danger = (value.currentValue > value.maxValue || value.currentValue < value.minValue) ? true : false;
+                    }
+
+                    return {
+                        status: status,
+                        value: value.currentValue,
+                        unit: value.paramUnit,
+                        name: value.paramName
+                    }
+                });
+
+                return data;
+            }
+
+            return '';
         },
         getTimestamp: state => {
             return state.timestamp;
