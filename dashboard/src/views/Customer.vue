@@ -1,10 +1,10 @@
 <template>
-  <div class="driver">
+  <div class="map-details-view">
     <b-row>
-      <b-col cols="8">
+      <b-col cols="9">
         <Map/>
       </b-col>
-      <b-col cols="4">
+      <b-col cols="3">
         <DeliveryDetails/>
       </b-col>
     </b-row>
@@ -22,4 +22,6 @@ export default {
     DeliveryDetails
   }
 };
+
+
 </script>

@@ -48,6 +48,7 @@
         methods: {
             setMarker(marker) {
                 let status = `<ul class="list-group">`;
+                 status = status + `<li  style="background-color: darkblue; color: white;" class="list-group-item d-flex justify-content-between">${marker.timestamp}</li>`;
                 marker.paramLogDtos.forEach(element => {
                     status = status + `<li class="list-group-item d-flex justify-content-between">${element.deliveryParamDto.paramName}: <span>${element.currentValue} ${element.deliveryParamDto.paramUnit}</span></li>`
                 });
