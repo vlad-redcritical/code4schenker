@@ -1,35 +1,43 @@
 .card {
-    border-radius: 0;
+  border-radius: 0;
   border: none;
 }
 
 .card-header {
-    color: $white;
-    font-weight: 700;
-    background: $info;
+  color: $white;
+  font-weight: 700;
+  background: $info;
 }
 
 .card-body {
   padding: 0;
-    .list-unstyled {
 
-         li {
+  .list-unstyled {
 
-         }
-     }
+    li {
 
+    }
+  }
+
+}
+
+.card-footer {
+  background: white;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
 .alert {
 
-margin-top: 1rem;
-color: white;
+  margin-top: 1rem;
+  color: white;
 }
 
-.alert-warning{
+.alert-warning {
   background-color: #e67e22;
 }
 
-.alert-danger{
+.alert-danger {
   background-color: #e74c3c;
 }

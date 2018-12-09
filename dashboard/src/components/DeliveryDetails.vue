@@ -1,36 +1,45 @@
 <template>
-  <b-card header="Current details">
-    <ul class="list-group">
-      <li class="danger-bg list-group-item d-flex justify-content-between">Speed: <span>{{speed}}</span><img alt="" style="transform: rotate(45deg); width: 16px; height: 16px;" src="../assets/right-arrow-w.png"></li>
-      <li class="list-group-item d-flex justify-content-between">Angle: <span>{{angle}}</span><img alt="" style="transform: rotate(0deg); width: 16px; height:16px;" src="../assets/right-arrow-db.png"></li>
-      <li class="list-group-item d-flex justify-content-between">Weight: <span>{{weight}}</span><img alt="" style="transform: rotate(315deg); width: 16px; height: 16px;" src="../assets/right-arrow-db.png"></li>
-      <li class="warning-bg list-group-item d-flex justify-content-between">Pressure: <span>{{pressure}}</span><img alt="" style="transform: rotate(45deg); width: 16px; height:16px;" src="../assets/right-arrow-w.png"></li>
-      <li class="list-group-item d-flex justify-content-between">Shakes: <span>{{shakes}}</span><img alt="" style="transform: rotate(315deg); width: 16px; height: 16px;" src="../assets/right-arrow-db.png"></li>
-    </ul>
+    <div class="delivery-details">
+        <div class="card" v-if="details">
+            <div class="card-header">Current details</div>
 
-    <div class="alert alert-warning">
-      <strong>Warning!</strong> Min and Max for Temperature.
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between" v-for="(detail, index) in details"
+                        :key="index">
+                        {{detail.deliveryParamDto.paramName}}: <span>{{detail.deliveryParamDto.currentValue}} {{detail.deliveryParamDto.paramUnit}}</span>
+                    </li>
+                </ul>
+
+                <!--<div class="alert alert-warning">-->
+                    <!--<strong>Warning!</strong> Min and Max for Temperature.-->
+                <!--</div>-->
+
+                <!--<div class="alert alert-danger">-->
+                    <!--<strong>Danger!</strong> Min and Max for Temperature.-->
+                <!--</div>-->
+            </div>
+
+            <div class="card-footer">
+                 <div v-if="timestamp" class="d-flex justify-content-center timestamp">
+                    <span class="time">{{moment(timestamp).format('HH:mm')}}</span>
+                    <span class="date">{{moment(timestamp).format('DD-MM-YYYY')}}</span>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="alert alert-danger">
-      <strong>Danger!</strong> Min and Max for Temperature.
-    </div>
-
-  </b-card>
-
 </template>
 
 <script>
-export default {
-  name: "DeliveryDetails",
-  data() {
-    return {
-      speed: 100,
-      weight: 300,
-      angle: 3.2,
-      pressure: 100,
-      shakes: 100
+    export default {
+        name: "DeliveryDetails",
+        computed: {
+            details() {
+                return this.$store.getters.getDetails
+            },
+            timestamp() {
+                return this.$store.getters.getTimestamp;
+            }
+        }
     };
-  }
-};
 </script>
