@@ -20,10 +20,13 @@
 <script>
 import Map from "../components/Map.vue";
 import DeliveryDetails from "../components/DeliveryDetails.vue";
+import { GChart } from 'vue-google-charts'
+
 
 export default {
   name: "Driver",
   components: {
+      GChart,
     Map,
     DeliveryDetails
   }
