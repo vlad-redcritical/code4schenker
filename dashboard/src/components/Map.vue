@@ -12,11 +12,11 @@
         </gmap-custom-marker>
 
 
-        <!--<gmap-custom-marker :key="index" v-for="(m,index) in markers"  :marker="m.position">-->
-            <!--<div class="details" :class="{recordDetails: m.display}"-->
-                 <!--style="width: 200px; position: relative; bottom: 20px; opacity: 0;" v-html="m.status"></div>-->
-            <!--<div class="circle info-bg" @click="m.display = !m.display" style="position: relative; top: 10px;"></div>-->
-        <!--</gmap-custom-marker>-->
+        <gmap-custom-marker :key="index" v-for="(m,index) in markers" :marker="m.position">
+            <div class="details" :class="{recordDetails: m.display}"
+                 style="width: 200px; position: relative; bottom: 20px; opacity: 0;" v-html="m.status"></div>
+            <div class="circle info-bg" @click="m.display = !m.display" style="position: relative; top: 10px;"></div>
+        </gmap-custom-marker>
     </GmapMap>
 </template>
 
@@ -36,6 +36,7 @@
                 },
                 currentPosition: {},
                 path: [],
+                markers: []
             };
         },
         computed: {
@@ -44,24 +45,44 @@
         components: {
             'gmap-custom-marker': GmapCustomMarker
         },
+        methods: {
+            setMarker(marker) {
+                let status = `<ul class="list-group">`;
+                marker.paramLogDtos.forEach(element => {
+                    status = status + `<li class="list-group-item d-flex justify-content-between">${element.deliveryParamDto.paramName}: <span>${element.currentValue} ${element.deliveryParamDto.paramUnit}</span></li>`
+                });
+                status = status + `</ul>`;
+
+                return {
+                    position: marker.position,
+                    display: false,
+                    status: status
+                }
+            }
+        },
         mounted() {
             let recordID = 13;
 
-            setInterval(() => {
+            let timer = setInterval(() => {
                     axios.get(`${process.env.VUE_APP_API_URL}details/${recordID}`)
                         .then(response => {
                             const responseData = response.data;
-                            this.currentPosition = responseData.position;
-                            this.center = responseData.position;
 
+                            if (this.center.lat === 0) {
+                                this.center = responseData.position;
+                            }
+
+                            this.currentPosition = responseData.position;
                             this.path.push(responseData.position);
-                        }).catch(error => {
-                        console.log(error);
+
+                            this.markers.push(this.setMarker(responseData));
+                        }).catch(() => {
+                        clearInterval(timer);
                     });
 
                     recordID = recordID + 1;
                 }
-               , 1000000);
+                , 10000);
         }
     };
 </script>
