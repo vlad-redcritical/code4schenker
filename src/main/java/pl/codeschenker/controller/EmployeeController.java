@@ -14,6 +14,7 @@ public class EmployeeController {
     @Autowired
     private DeliveryService deliveryService;
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(value = "/details/{id}", produces = "application/json")
     public PointDto findOne (@PathVariable(name = "id") Long id) {
         return deliveryService.findOne(id);

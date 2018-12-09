@@ -5,11 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.codeschenker.model.DeliveryEntity;
 import pl.codeschenker.model.DeliveryParamEntity;
 import pl.codeschenker.model.PointEntity;
-import pl.codeschenker.model.dto.DeliveryDto;
-import pl.codeschenker.model.dto.DeliveryParamDto;
-import pl.codeschenker.model.dto.ParamLogDto;
+import pl.codeschenker.model.dto.*;
 import pl.codeschenker.model.ParamLogEntity;
-import pl.codeschenker.model.dto.PointDto;
 import pl.codeschenker.repository.PointRepository;
 import pl.codeschenker.service.DeliveryService;
 
@@ -66,8 +63,12 @@ public class DeliveryServiceImpl implements DeliveryService {
         dto.setId(entity.getId());
         dto.setTimestamp(entity.getTimestamp());
         dto.setDeliveryDto(mapDeliveryToDto(entity.getDeliveryEntity()));
-        dto.setLatitude(entity.getLatitude());
-        dto.setLongitude(entity.getLongitude());
+
+        PositionDto positionDto = new PositionDto();
+        positionDto.setLat(Float.parseFloat(entity.getLatitude()));
+        positionDto.setLng(Float.parseFloat(entity.getLongitude()));
+
+        dto.setPosition(positionDto);
         dto.setParamLogDtos(entity.getParamLogEntities().stream().map(this::mapParamLogToDto).collect(Collectors.toList()));
 
         return dto;

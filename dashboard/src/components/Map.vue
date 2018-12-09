@@ -3,7 +3,7 @@
             :center="center"
             :zoom="7"
             map-type-id="terrain"
-            style="width: 100%; height: 450px;"
+            style="width: 100%; height: 450px; border-style: solid; border-width: 1.5px; border-color: lightgray;"
     >
         <GmapPolyline :path="path" :editable="false"/>
 
