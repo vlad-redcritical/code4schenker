@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import pl.codeschenker.model.PointEntity;
 
 @Repository
-public interface PointRepository extends JpaRepository<PointEntity, Long>{
+public interface PointsRepository extends JpaRepository<PointEntity, Long> {
 }
