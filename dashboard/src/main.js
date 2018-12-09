@@ -7,7 +7,7 @@ import store from './store';
 // Vue Imports
 import * as VueGoogleMaps from 'vue2-google-maps';
 import BootstrapVue from 'bootstrap-vue';
-
+import Trend from 'vuetrend';
 
 // Styles
 import 'bootstrap/dist/css/bootstrap.css'
@@ -17,6 +17,7 @@ import './assets/scss/main.scss';
 // Vue Use
 Vue.config.productionTip = false;
 
+Vue.use(Trend);
 Vue.use(BootstrapVue);
 Vue.use(VueGoogleMaps, {
     load: {
