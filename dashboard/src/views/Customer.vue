@@ -92,16 +92,14 @@ border-style: solid;
                     });
 
                 }).catch(error => {
+                // eslint-disable-next-line
                 console.log(error);
             });
 
 
         },
         data() {
-
             return {
-
-
                 // Array will be automatically processed with visualization.arrayToDataTable function
                 chartData: [
                     ['Year', 'Sales', 'Expenses', 'Profit'],
@@ -136,6 +134,4 @@ border-style: solid;
             }
         }
     };
-
-
 </script>

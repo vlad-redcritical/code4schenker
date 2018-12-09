@@ -3,7 +3,6 @@
         <GmapMap
                 :center="center"
                 :zoom="7"
-                :options="mapOptions"
                 map-type-id="terrain"
                 style="width: 100%; height: 450px; border-style: solid; border-width: 1.5px; border-color: lightgray;"
         >
@@ -46,9 +45,6 @@
                 },
                 path: [],
                 markers: [],
-                mapOptions: {
-                    disableDefaultUI : true
-                }
             };
         },
         computed: {
@@ -138,7 +134,7 @@
 
                         this.recordID = this.recordID + 1;
                     }
-                    , 3000);
+                    , 1000);
             }
         },
         mounted() {
