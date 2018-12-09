@@ -1,10 +1,11 @@
 .navbar {
+  margin-top: 20px;
   padding: 1.5em 1em;
-  background: $gray;
+  background: #006;
 
   .nav-item {
     padding: 0 10px;
-    color: $black;
+    color: white;
 
     &:hover,
     &.router-link-active {
