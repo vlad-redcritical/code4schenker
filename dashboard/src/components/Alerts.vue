@@ -1,7 +1,7 @@
 <template>
     <div class="alerts-list">
-        <b-alert v-for="alert in getAlerts" :key="alert.ID" variant="danger" show dismissible>
-            <div v-html="alert.message"></div>
+        <b-alert v-if="getAlert" :key="getAlert.ID" :variant="getAlert.variant" show dismissible @dismiss="removeAlert">
+            <div v-html="getAlert.message"></div>
         </b-alert>
     </div>
 </template>
@@ -11,8 +11,13 @@
 
     export default {
         name: 'Alerts',
+        methods: {
+            removeAlert() {
+                this.$store.commit('removeAlert');
+            }
+        },
         computed: {
-            ...mapGetters(['getAlerts']),
+            ...mapGetters(['getAlert']),
         }
     }
 </script>

@@ -62,11 +62,25 @@
                         status = (deliveryParamDto.currentValue > deliveryParamDto.maxValue || deliveryParamDto.currentValue < deliveryParamDto.minValue) ? 'danger' : 'warning';
                     }
 
+                    if (status === 'warning') {
+                        this.$store.commit('addAlerts', {
+                            variant: 'warning',
+                            message: `${deliveryParamDto.paramName} is close to the limit`
+                        })
+                    }
+
+                    if (status === 'danger') {
+                        this.$store.commit('addAlerts', {
+                            message: `${deliveryParamDto.paramName} went out of the limit`
+                        });
+                    }
+
                     output = output + `<li class="list-group-item d-flex justify-content-between ${status}">${element.deliveryParamDto.paramName}: <span>${element.deliveryParamDto.currentValue} ${element.deliveryParamDto.paramUnit}</span></li>`
                 });
                 output = output + `</ul>`;
 
                 return {
+                    boxColor: status,
                     status: output,
                     display: false,
                     position: marker.position
@@ -91,6 +105,7 @@
                                 this.$store.commit('addDetails', responseData.paramLogDtos);
                                 this.$store.commit('setTimestamp', responseData.timestamp);
                             }).catch(error => {
+                            // eslint-disable-next-line
                             console.log(error);
                             clearInterval(this.timer);
                         });

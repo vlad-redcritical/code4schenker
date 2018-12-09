@@ -5,13 +5,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        alerts: [],
+        alert: null,
         details: {},
         timestamp: null
     },
     getters: {
-        getAlerts: state => {
-            return state.alerts;
+        getAlert: state => {
+            return state.alert;
         },
         getDetails: state => {
             if (state.details.length){
@@ -51,16 +51,20 @@ export default new Vuex.Store({
         addAlerts: (state, payLoad) => {
             const alert = {
                 ID: Date.now(),
+                variant: payLoad.variant || 'danger',
                 message: payLoad.message || 'Something went wrong'
             };
 
-            state.alerts.push(alert);
+            state.alert = alert;
         },
         setTimestamp: (state, payLoad) => {
             state.timestamp = payLoad
         },
         addDetails: (state, payLoad) => {
             state.details = payLoad
+        },
+        removeAlert: state => {
+            state.alert = null;
         }
     },
 })
