@@ -89,7 +89,7 @@
 
                     recordID = recordID + 1;
                 }
-                , 10000000);
+                , 10000);
         }
     };
 </script>
