@@ -7,7 +7,17 @@
       <li class="warning-bg list-group-item d-flex justify-content-between">Pressure: <span>{{pressure}}</span><img alt="" style="transform: rotate(45deg); width: 16px; height:16px;" src="../assets/right-arrow-w.png"></li>
       <li class="list-group-item d-flex justify-content-between">Shakes: <span>{{shakes}}</span><img alt="" style="transform: rotate(315deg); width: 16px; height: 16px;" src="../assets/right-arrow-db.png"></li>
     </ul>
+
+    <div class="alert alert-warning">
+      <strong>Warning!</strong> Min and Max for Temperature.
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>Danger!</strong> Min and Max for Temperature.
+    </div>
+
   </b-card>
+
 </template>
 
 <script>
