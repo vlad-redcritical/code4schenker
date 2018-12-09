@@ -15,19 +15,25 @@
 .warning {
   color: $warning;
   &-bg {
-    background: $warning;
+    background: $warning !important;
     color: white;
 
   }
 }
 
 .danger {
-  color: $danger;
+  color: $white;
+  background: rgba($danger, 0.75);
+  font-weight: 700;
   &-bg {
     background: $danger;
     color: white;
 
   }
+}
+
+.circle-danger-bg {
+  background: $danger;
 }
 
 .white {
