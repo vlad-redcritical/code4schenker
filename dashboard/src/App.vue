@@ -1,7 +1,7 @@
 <template>
     <b-container id="app">
         <Header/>
-        <Alerts/>
+        <Alerts v-if="!this.$route.name === 'customer'"/>
         <router-view></router-view>
     </b-container>
 </template>
