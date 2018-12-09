@@ -22,7 +22,6 @@
 
 <script>
     import axios from 'axios';
-    import json from '../assets/route';
     import {gmapApi} from "vue2-google-maps";
     import GmapCustomMarker from 'vue2-gmap-custom-marker';
 
@@ -37,33 +36,6 @@
                 },
                 currentPosition: {},
                 path: [],
-                // markers: [
-                //     {
-                //         position: {lng: -87.619, lat: 41.87},
-                //         display: false,
-                //         status: `<ul class="list-group">
-                //                               <li class="list-group-item d-flex justify-content-between info-bg white">Speed: <span>100</span></li>
-                //                               <li class="list-group-item d-flex justify-content-between">Angle: <span>100</span></li>
-                //                               <li class="list-group-item d-flex justify-content-between">Weight: <span>100</span></li>
-                //                               <li class="list-group-item d-flex justify-content-between">Pressure: <span>100</span></li>
-                //                               <li class="list-group-item d-flex justify-content-between">Shakes: <span>100</span></li>
-                //                             </ul>`
-                //     },
-                //     {
-                //         position: {
-                //             "lng": -87.938166,
-                //             "lat": 41.746684
-                //         },
-                //         display: false,
-                //         status: `<ul class="list-group">
-                //                               <li class="list-group-item d-flex justify-content-between info-bg white">Speed: <span>300</span></li>
-                //                               <li class="list-group-item d-flex justify-content-between">Angle: <span>100</span></li>
-                //                               <li class="list-group-item d-flex justify-content-between">Weight: <span>100</span></li>
-                //                               <li class="list-group-item d-flex justify-content-between">Pressure: <span>100</span></li>
-                //                               <li class="list-group-item d-flex justify-content-between">Shakes: <span>100</span></li>
-                //                             </ul>`
-                //     },
-                // ]
             };
         },
         computed: {
