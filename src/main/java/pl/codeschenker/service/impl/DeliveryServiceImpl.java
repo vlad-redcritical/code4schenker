@@ -30,8 +30,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     private ParamLogDto mapParamLogToDto(ParamLogEntity entity) {
         ParamLogDto dto = new ParamLogDto();
         dto.setId(entity.getId());
-        dto.setCurrentValue(entity.getValue());
-        dto.setDeliveryParamDto(mapDeliveryParamToDto(entity.getDeliveryParamEntity()));
+        dto.setDeliveryParamDto(mapDeliveryParamToDto(entity.getDeliveryParamEntity(), entity.getValue()));
 
         return dto;
     }
@@ -47,13 +46,14 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
 
-    private DeliveryParamDto mapDeliveryParamToDto(DeliveryParamEntity entity) {
+    private DeliveryParamDto mapDeliveryParamToDto(DeliveryParamEntity entity, String currentValue) {
         DeliveryParamDto dto = new DeliveryParamDto();
         dto.setId(entity.getId());
         dto.setMaxValue(entity.getMaxValue());
         dto.setMinValue(entity.getMinValue());
         dto.setParamName(entity.getParamName());
         dto.setParamUnit(entity.getParamUnit());
+        dto.setCurrentValue(currentValue);
 
         return dto;
     }
