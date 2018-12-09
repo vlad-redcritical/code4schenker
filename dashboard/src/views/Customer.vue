@@ -9,12 +9,58 @@
             </b-col>
         </b-row>
         <b-row>
-            <div style="margin-top: 30px; padding-top:1px;margin-left: 15px; border-style: solid; border-width: 1.5px; border-color: #006;">
+            <div style="margin-top: 30px;border-color: #006;
+border-style: solid; margin-left: 15px; display: flex;">
+                <h1 style="    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);color: #FFF;
+    font-weight: 700;
+    background: #006; ">Temperature history</h1>
+                <h1 style="    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    font-weight: 700;
+    background: white;
+border-color: #006;
+border-style: solid;
+">Air pressure history</h1>
+                <h1 style="    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    font-weight: 700;
+    background: white;
+border-color: #006;
+border-style: solid;
+">Vibration history</h1>
+                <h1 style="    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    font-weight: 700;
+    background: white;
+border-color: #006;
+border-style: solid;
+">Overload history</h1>
+                <h1 style="    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    font-weight: 700;
+    background: white;
+border-color: #006;
+border-style: solid;
+">Angle</h1>
+                <h1 style="    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    font-weight: 700;
+    background: white;
+border-color: #006;
+border-style: solid;
+">Absolute humidity</h1>
+            </div>
+            <div style=" padding-top:1px;margin-left: 15px; border-style: solid; border-width: 1.5px; border-color: #006;">
                 <GChart
                         type="LineChart"
                         :data="chartData"
                         :options="chartOptions"
                 />
+
+
             </div>
         </b-row>
 
