@@ -22,7 +22,7 @@ public class DeliveryController {
         return deliveryService.findOne(id);
     }
 
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(value = "/settings/{id}", produces = "application/json")
     public List<SettingsDto> findAll (@PathVariable(name = "id") Long id){
         return deliveryService.findByCriteria(id);
