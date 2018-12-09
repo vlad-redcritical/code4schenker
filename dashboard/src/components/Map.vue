@@ -14,7 +14,7 @@
 
         <gmap-custom-marker :key="index" v-for="(m,index) in markers" :marker="m.position">
             <div class="details" :class="{recordDetails: m.display}" style="width: 200px; position: relative; bottom: 20px; opacity: 0;" v-html="m.status"></div>
-            <div class="circle success-bg" @click="m.display = !m.display"></div>
+            <div class="circle info-bg" @click="m.display = !m.display" style="position: relative; top: 10px;"></div>
         </gmap-custom-marker>
 
         <!--<GmapMarker v-for="(m, index) in markers" :key="index" :position="m.position" :clickable="true"-->
@@ -62,7 +62,7 @@
                         position: {lng: -87.619, lat: 41.87},
                         display: false,
                         status: `<ul class="list-group">
-                                              <li class="list-group-item d-flex justify-content-between dark-blue-bg white">Speed: <span>100</span></li>
+                                              <li class="list-group-item d-flex justify-content-between info-bg white">Speed: <span>100</span></li>
                                               <li class="list-group-item d-flex justify-content-between">Angle: <span>100</span></li>
                                               <li class="list-group-item d-flex justify-content-between">Weight: <span>100</span></li>
                                               <li class="list-group-item d-flex justify-content-between">Pressure: <span>100</span></li>
@@ -76,7 +76,7 @@
                         },
                         display: false,
                         status: `<ul class="list-group">
-                                              <li class="list-group-item d-flex justify-content-between dark-blue-bg white">Speed: <span>300</span></li>
+                                              <li class="list-group-item d-flex justify-content-between info-bg white">Speed: <span>300</span></li>
                                               <li class="list-group-item d-flex justify-content-between">Angle: <span>100</span></li>
                                               <li class="list-group-item d-flex justify-content-between">Weight: <span>100</span></li>
                                               <li class="list-group-item d-flex justify-content-between">Pressure: <span>100</span></li>
