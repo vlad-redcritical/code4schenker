@@ -11,7 +11,6 @@
             <img src="../assets/truck.png" alt="DB Truck">
         </gmap-custom-marker>
 
-
         <gmap-custom-marker :key="index" v-for="(m,index) in markers" :marker="m.position">
             <div class="details" :class="{recordDetails: m.display}"
                  style="width: 200px; position: relative; bottom: 20px; opacity: 0;" v-html="m.status"></div>
@@ -34,7 +33,10 @@
                     lat: 0,
                     lng: 0
                 },
-                currentPosition: {},
+                currentPosition: {
+                    lat: 0,
+                    lng: 0
+                },
                 path: [],
                 markers: []
             };
@@ -49,14 +51,14 @@
             setMarker(marker) {
                 let status = `<ul class="list-group">`;
                 marker.paramLogDtos.forEach(element => {
-                    status = status + `<li class="list-group-item d-flex justify-content-between">${element.deliveryParamDto.paramName}: <span>${element.currentValue} ${element.deliveryParamDto.paramUnit}</span></li>`
+                    status = status + `<li class="list-group-item d-flex justify-content-between">${element.paramName}: <span>${element.currentValue} ${element.paramUnit}</span></li>`
                 });
                 status = status + `</ul>`;
 
                 return {
-                    position: marker.position,
+                    status,
                     display: false,
-                    status: status
+                    position: marker.position
                 }
             }
         },
@@ -67,7 +69,7 @@
                     axios.get(`${process.env.VUE_APP_API_URL}details/${recordID}`)
                         .then(response => {
                             const responseData = response.data;
-
+                            console.log(recordID);
                             if (this.center.lat === 0) {
                                 this.center = responseData.position;
                             }
@@ -75,14 +77,17 @@
                             this.currentPosition = responseData.position;
                             this.path.push(responseData.position);
 
+
                             this.markers.push(this.setMarker(responseData));
-                        }).catch(() => {
+                            this.$store.commit('addDetails', responseData.paramLogDtos);
+                        }).catch(error => {
+                        console.log(error);
                         clearInterval(timer);
                     });
 
                     recordID = recordID + 1;
                 }
-                , 10000);
+                , 3000);
         }
     };
 </script>
