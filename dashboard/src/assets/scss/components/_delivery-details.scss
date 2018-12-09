@@ -1,16 +1,12 @@
 .delivery-details {
   .timestamp {
-    margin-bottom: 10px;
-
     .time {
       margin-right: 1em;
-      font-weight: 300;
       align-self: flex-end;
     }
 
-    .date {
+    .time, .date {
       font-weight: 300;
-      font-size: 1.25em;
     }
   }
 }

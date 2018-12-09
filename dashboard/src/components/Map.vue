@@ -52,7 +52,7 @@
         methods: {
             setMarker(marker) {
                 let status = `<ul class="list-group">`;
-                status = status + `<li style="background-color: darkblue; color: white;" class="text-center list-group-item d-flex justify-content-between">${moment(marker.timestamp).format('YYYY-MM-DD H:m')}</li>`;
+                status = status + `<li style="background-color: darkblue; color: white;" class="text-center list-group-item d-flex justify-content-center">${moment(marker.timestamp).format('YYYY-MM-DD HH:mm')}</li>`;
                 marker.paramLogDtos.forEach(element => {
                     status = status + `<li class="list-group-item d-flex justify-content-between">${element.deliveryParamDto.paramName}: <span>${element.deliveryParamDto.currentValue} ${element.deliveryParamDto.paramUnit}</span></li>`
                 });
