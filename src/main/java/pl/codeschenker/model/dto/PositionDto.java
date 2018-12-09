@@ -10,15 +10,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @ToString
-public class PointDto{
+public class PositionDto {
 
-    private Long id;
+    private Float lat;
 
-    private Date timestamp;
+    private Float lng;
 
-    private PositionDto position;
-
-    private DeliveryDto deliveryDto;
-
-    private List<ParamLogDto> paramLogDtos;
 }
