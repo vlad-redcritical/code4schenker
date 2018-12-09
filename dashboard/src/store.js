@@ -5,11 +5,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        alerts: []
+        alerts: [],
+        details: {}
     },
     getters: {
         getAlerts: state => {
             return state.alerts;
+        },
+        getDetails: state => {
+            return state.details
         }
     },
     mutations: {
@@ -20,6 +24,9 @@ export default new Vuex.Store({
             };
 
             state.alerts.push(alert);
+        },
+        addDetails: (state, payLoad) => {
+            state.details = payLoad
         }
     },
 })

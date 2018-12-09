@@ -20,4 +20,6 @@ public class DeliveryParamDto{
     private String maxValue;
 
     private String paramUnit;
+
+    private String currentValue;
 }
