@@ -24,6 +24,10 @@
             recognition.addEventListener("result", e => {
                 const transcription = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
 
+                if (transcription.includes('display home')) {
+                    this.$router.push({name: 'home'})
+                }
+
                 if (transcription.includes('display driver')) {
                     this.$router.push({name: 'driver'})
                 }
