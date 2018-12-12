@@ -12,6 +12,7 @@ import pl.codeschenker.repository.PointsRepository;
 import pl.codeschenker.service.DeliveryService;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,9 +39,12 @@ public class DeliveryServiceImpl implements DeliveryService {
 
     private SettingsDto converToSettingsDto(ParamLogEntity entity) {
         SettingsDto dto = new SettingsDto();
+        dto.setField("");
         dto.setMinValue(entity.getDeliveryParamEntity().getMinValue());
         dto.setMaxValue(entity.getDeliveryParamEntity().getMaxValue());
         dto.setValue(entity.getValue());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm dd-MM-yyyy");
+        dto.setTimestamp(simpleDateFormat.format(entity.getPointEntity().getTimestamp()));
         return dto;
     }
 

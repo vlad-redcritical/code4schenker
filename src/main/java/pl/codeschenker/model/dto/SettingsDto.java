@@ -9,10 +9,16 @@ import lombok.ToString;
 @ToString
 public class SettingsDto {
 
+
+
+    private String field;
+
     private String minValue;
 
     private String maxValue;
 
     private String value;
+
+    private String timestamp;
 
 }
