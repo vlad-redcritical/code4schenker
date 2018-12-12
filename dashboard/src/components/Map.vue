@@ -63,13 +63,17 @@
                 }
             },
             setMarker(marker) {
-                let output = `<ul class="list-group">`;
                 let status = {
                     success: true,
                     warning: false,
                     danger: false
                 };
+
+                let output = document.createElement('ul');
+                output.className = 'list-group';
+
                 output = output + `<li style="background-color: darkblue; color: white;" class="text-center list-group-item d-flex justify-content-center">${moment(marker.timestamp).format('YYYY-MM-DD HH:mm')}</li>`;
+
                 marker.paramLogDtos.forEach(element => {
                     const {deliveryParamDto} = element;
 
@@ -91,15 +95,18 @@
                     }
 
                     let color = 'success';
+
                     if (status.warning) {
                         color = 'warning';
                     }
+
                     if (status.danger) {
                         color = 'danger';
                     }
 
                     output = output + `<li class="list-group-item d-flex justify-content-between ${color}">${element.deliveryParamDto.paramName}: <span>${element.deliveryParamDto.currentValue} ${element.deliveryParamDto.paramUnit}</span></li>`
                 });
+
                 output = output + `</ul>`;
 
                 return {
