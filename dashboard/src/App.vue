@@ -16,30 +16,40 @@
             Header,
             Alerts
         },
+        methods: {
+            getUserMedia() {
+                return !!(navigator.mediaDevices &&
+                    navigator.mediaDevices.getUserMedia);
+            }
+        },
         mounted() {
-            let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            let recognition = SpeechRecognition? new SpeechRecognition() : false;
-            recognition.interimResults = true;
+            if (this.getUserMedia) {
+                let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                let recognition = SpeechRecognition ? new SpeechRecognition() : false;
+                recognition.interimResults = true;
 
-            recognition.addEventListener("result", e => {
-                const transcription = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
+                recognition.addEventListener("result", e => {
+                    const transcription = Array.from(e.results).map(result => result[0]).map(result => result.transcript).join('');
 
-                if (transcription.includes('display home')) {
-                    this.$router.push({name: 'home'})
-                }
+                    if (transcription.includes('display home')) {
+                        this.$router.push({name: 'home'})
+                    }
 
-                if (transcription.includes('display driver')) {
-                    this.$router.push({name: 'driver'})
-                }
+                    if (transcription.includes('display driver')) {
+                        this.$router.push({name: 'driver'})
+                    }
 
-                if (transcription.includes('display customer')) {
-                    this.$router.push({name: 'customer'})
-                }
-            });
+                    if (transcription.includes('display customer')) {
+                        this.$router.push({name: 'customer'})
+                    }
+                });
 
-            recognition.addEventListener("end", recognition.start);
+                recognition.addEventListener("end", recognition.start);
 
-            recognition.start();
+                recognition.start();
+            } else {
+                alert('getUserMedia() is not supported by your browser');
+            }
         }
     };
 </script>
